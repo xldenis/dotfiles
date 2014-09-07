@@ -136,7 +136,18 @@ install_dotfiles () {
   done
 }
 
+clone_deps () {
+  info 'Cloning git deps'
+  local overwrite_all=false backup_all=false skip_all=false
+  cd deps
+  for dep in $(cat $DOTFILES_ROOT/deps/manifest)
+  do
+    git clone --depth 1 "${dep}" deps/ | info
+  done
+  cd ..
+}
 setup_gitconfig
+clone_deps
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
