@@ -1,9 +1,9 @@
 autoload -U colors && colors
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' unstagedstr '* '
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "%{$fg[blue]%}%s%{$fg[red]%} %b %{$fg[yellow]%}%u "
+zstyle ':vcs_info:git*' formats "%{$fg[blue]%}%s%{$fg[red]%} %b %{$fg[yellow]%}%u"
 
 precmd() {vcs_info}
 setopt prompt_subst
