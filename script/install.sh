@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+
+# Actually assumes Ubuntu vs OS X (shame, I know)
 function platform()
 {
   platform='linux'
@@ -24,6 +27,7 @@ get_script_dir () {
   echo "$DIR"
 }
 
+
 function install_core_osx()
 {
   local base_dir=$1; shift
@@ -38,6 +42,11 @@ function install_core_linux()
   install_plugins "$base_dir/linux" $linux_core
 }
 
+# packages that contain install instructions for both linux and os x (ie: zsh, git)
+function install_core_common()
+{
+  echo "raise NotImplementedError"
+}
 
 function install_plugins()
 {
@@ -52,9 +61,9 @@ function install_plugins()
       source "$base_dir/$pkg/install.sh"
 
       if [ $(platform) == 'osx' ] ; then
-        install_plugin_osx
+        ${pkg}_install_osx
       else
-        install_plugin_linux
+        ${pkg}_plugin_linux
       fi
     else
       echo "could not install $pkg"
@@ -72,7 +81,8 @@ function main()
     install_core_linux $base_dir
   fi
 
-  # install_plugins "base_dir" ()
+  langs=(haskell)
+  install_plugins "$base_dir/languages" $langs
 }
 
 main "$@"
