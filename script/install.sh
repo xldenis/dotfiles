@@ -81,7 +81,7 @@ function main()
     install_core_linux $base_dir
   fi
 
-  langs=(haskell)
+  langs=(haskell ruby)
   install_plugins "$base_dir/languages" $langs
 }
 
