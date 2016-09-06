@@ -17,7 +17,6 @@ do
   source $file
 done
 
-source $ZSH/deps/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do

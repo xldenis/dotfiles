@@ -1,5 +1,5 @@
 function projects() {
-cd ~/Code/$1
+cd ~/code/$1
 }
 
 alias c=projects
