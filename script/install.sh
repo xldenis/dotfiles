@@ -45,7 +45,9 @@ function install_core_linux()
 # packages that contain install instructions for both linux and os x (ie: zsh, git)
 function install_core_common()
 {
-  echo "raise NotImplementedError"
+  local base_dir=$1; shift
+  common_core=(nvim zsh)
+  install_plugins "$base_dir/lib" $common_core
 }
 
 function install_plugins()
@@ -63,8 +65,9 @@ function install_plugins()
       if [ $(platform) == 'osx' ] ; then
         ${pkg}_install_osx
       else
-        ${pkg}_plugin_linux
+        ${pkg}_install_linux
       fi
+      echo "finished installing $pkg"
     else
       echo "could not install $pkg"
     fi
@@ -74,7 +77,8 @@ function install_plugins()
 function main()
 {
    local base_dir=$(dirname $(get_script_dir))
-
+  
+  install_core_common $base_dir
   if [[ $(platform) == 'osx' ]] ; then
     install_core_osx $base_dir
   else
