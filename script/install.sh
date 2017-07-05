@@ -56,7 +56,7 @@ function install_core_common()
 function install_plugins()
 {
   local base_dir=$1; shift
-  local plugin_list=$1; shift
+  local plugin_list=${@}; shift
 
   for pkg in $plugin_list; do
     install_path="$base_dir/$pkg/install.sh"
@@ -86,10 +86,10 @@ function main()
     install_core_linux $base_dir
   fi
 
-  lib=(zsh) 
+  lib=(zsh git) 
   langs=(haskell ruby)
-  install_plugins "$base_dir/lib" $lib
-  install_plugins "$base_dir/languages" $langs
+  install_plugins "$base_dir/lib" "${lib[@]}"
+  install_plugins "$base_dir/languages" ${langs[@]}
 }
 
 main "$@"

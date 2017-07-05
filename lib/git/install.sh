@@ -9,3 +9,9 @@ function git_install_linux()
   sudo apt-get install git
 }
 
+
+function install_common ()
+{
+  ln -s "$base_dir/zsh/gitconfig.symlink" "$HOME/.gitconfig"
+}
+
