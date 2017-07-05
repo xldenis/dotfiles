@@ -12,5 +12,7 @@ function zsh_install_linux()
 
 function install_common ()
 {
-  echo "DONE"
+  echo "AA"
+  # chsh -s "$(which zsh)"
+  # ln -s "$base_dir/zsh/zshrc.symlink" "$HOME/.zshrc"
 }

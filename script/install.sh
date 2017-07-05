@@ -30,6 +30,11 @@ get_script_dir () {
 
 function install_core_osx()
 {
+  if hash brew 2>/dev/null; then
+    echo "Brew is already installed... skipping"
+    return
+  fi
+
   local base_dir=$1; shift
   osx_core=(brew)
   install_plugins "$base_dir/osx" $osx_core
@@ -81,7 +86,9 @@ function main()
     install_core_linux $base_dir
   fi
 
+  lib=(zsh) 
   langs=(haskell ruby)
+  install_plugins "$base_dir/lib" $lib
   install_plugins "$base_dir/languages" $langs
 }
 
