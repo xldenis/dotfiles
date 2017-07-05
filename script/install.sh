@@ -88,7 +88,7 @@ function main()
 
   lib=(zsh git) 
   langs=(haskell ruby)
-  install_plugins "$base_dir/lib" "${lib[@]}"
+  install_plugins "$base_dir/lib" ${lib[@]}
   install_plugins "$base_dir/languages" ${langs[@]}
 }
 

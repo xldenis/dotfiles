@@ -12,7 +12,11 @@ function zsh_install_linux()
 
 function install_common ()
 {
-  echo "AA"
-  # chsh -s "$(which zsh)"
+  if [ $SHELL != "/usr/local/bin/zsh" ]; then
+    chsh -s "$(which zsh)"
+  fi
+
+  # git clone git@github.com:zsh-users/zsh-syntax-highlighting "$base_dir/zsh/zsh-syntax-highlighting"
+
   # ln -s "$base_dir/zsh/zshrc.symlink" "$HOME/.zshrc"
 }

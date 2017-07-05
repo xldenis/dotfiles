@@ -2,6 +2,7 @@ function git_install_osx()
 {
   brew install git
   # setup_configs # maybe instead have a common link_configs function?
+  install_common
 }
 
 function git_install_linux()
@@ -12,6 +13,6 @@ function git_install_linux()
 
 function install_common ()
 {
-  ln -s "$base_dir/zsh/gitconfig.symlink" "$HOME/.gitconfig"
+  ln -s "$base_dir/git/gitconfig.symlink" "$HOME/.gitconfig"
 }
 

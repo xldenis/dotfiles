@@ -1,4 +1,4 @@
-export ZSH=$HOME/.dotfiles
+export ZSH=$HOME/.dotfiles/lib/zsh
 
 export PROJECTS=~/Code
 
@@ -8,7 +8,7 @@ then
 fi
 
 typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+config_files=($ZSH/*.zsh)
 
 config_files=(${(@)config_files:#$ZSH/deps/*})
 
@@ -17,7 +17,7 @@ do
   source $file
 done
 
-source $ZSH/deps/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
