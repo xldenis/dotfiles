@@ -30,14 +30,21 @@ get_script_dir () {
 
 function install_core_osx()
 {
-  if hash brew 2>/dev/null; then
-    echo "Brew is already installed... skipping"
-    return
+  if test ! $(which brew)
+  then
+    $base_dir/osx/brew/install.sh
   fi
 
-  local base_dir=$1; shift
-  osx_core=(brew)
-  install_plugins "$base_dir/osx" $osx_core
+  cd $1
+  last_run=$(date -r BREW_RUN +%s)
+  last_week=$(date -v -7d +%s)
+
+  if [ "$last_run" -lt "$last_week" ]; then
+    brew bundle
+    date > BREW_RUN
+  else
+    echo "brew bundle has run in the last week... skipping"
+  fi
 }
 
 function install_core_linux()
@@ -78,7 +85,7 @@ function install_plugins()
 
 function main()
 {
-   local base_dir=$(dirname $(get_script_dir))
+  local base_dir=$(dirname $(get_script_dir))
 
   if [[ $(platform) == 'osx' ]] ; then
     install_core_osx $base_dir
@@ -86,10 +93,14 @@ function main()
     install_core_linux $base_dir
   fi
 
-  lib=(zsh git) 
+  lib=$(ls lib)
   langs=(haskell ruby)
+
+  HOMEBREW_NO_AUTO_UPDATE=1
+
   install_plugins "$base_dir/lib" ${lib[@]}
-  install_plugins "$base_dir/languages" ${langs[@]}
+  # install_plugins "$base_dir/languages" ${langs[@]}
+  unset HOMEBREW_NO_AUTO_UPDATE
 }
 
 main "$@"

@@ -1,7 +1,9 @@
 function git_install_osx()
 {
-  brew install git
-  # setup_configs # maybe instead have a common link_configs function?
+  if test ! $(which git)
+  then
+    brew install git
+  fi
   install_common
 }
 
@@ -13,6 +15,10 @@ function git_install_linux()
 
 function install_common ()
 {
-  ln -s "$base_dir/git/gitconfig.symlink" "$HOME/.gitconfig"
+  if [[ -f "$HOME/.gitconfig" ]]; then
+    echo ".gitconfig is already symlinked... skipping"
+  else
+    ln -s "$base_dir/git/gitconfig.symlink" "$HOME/.gitconfig"
+  fi
 }
 

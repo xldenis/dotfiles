@@ -8,9 +8,12 @@ export DIRRSTACKSIZE=8
 setopt autopushd pushdminus pushdsilent pushdtohome
 alias pd=popd
 
-function vss() {
- prev_dir=$(pwd)
- c shopify/vagrant
- vagrant ssh
- cd $prev_dir
+kube () {
+    kubectl config use-context $1
+    if [ "$#" -ne 1 ]
+    then
+        kubectl config set-context $1 --namespace $2
+    fi
 }
+
+alias k=kubectl

@@ -1,4 +1,4 @@
-export ZSH=$HOME/.dotfiles/lib/zsh
+export LIB=$HOME/.dotfiles/lib
 
 export PROJECTS=~/Code
 
@@ -8,16 +8,16 @@ then
 fi
 
 typeset -U config_files
-config_files=($ZSH/*.zsh)
 
-config_files=(${(@)config_files:#$ZSH/deps/*})
+config_files=($LIB/*/*.zsh)
 
 for file in ${(M)config_files:#*/path.zsh}
 do
   source $file
 done
 
-source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $LIB/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
@@ -35,3 +35,7 @@ do
 done
 
 unset config_files
+export PATH=/Users/xavier/.local/bin:$PATH
+
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'

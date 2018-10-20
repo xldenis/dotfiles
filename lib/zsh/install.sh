@@ -1,6 +1,9 @@
 function zsh_install_osx()
 {
-  brew install zsh
+  if ! test $(which zsh); then
+    brew install zsh
+  fi
+
   install_common
 }
 
@@ -18,5 +21,9 @@ function install_common ()
 
   # git clone git@github.com:zsh-users/zsh-syntax-highlighting "$base_dir/zsh/zsh-syntax-highlighting"
 
-  # ln -s "$base_dir/zsh/zshrc.symlink" "$HOME/.zshrc"
+  if [[ -f "$HOME/.zshrc" ]]; then
+    echo ".zshrc is already symlinked... skipping"
+  else
+    ln -s "$base_dir/zsh/zshrc.symlink" "$HOME/.zshrc"
+  fi
 }
