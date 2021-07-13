@@ -20,6 +20,22 @@ function install_common ()
     echo "nvim config is already symlinked... skipping"
   else
     mkdir -p $HOME/.config
+    mkdir -p $HOME/.cache
     ln -s "$base_dir/nvim/config" "$HOME/.config/nvim"
+    install_dein
+  fi
+}
+
+
+function install_dein()
+{
+  INSTALL_DIR="$HOME/.cache/dein/repos/github.com/Shougo/dein.vim"
+
+  # make plugin dir and fetch dein
+  if ! [ -e "$INSTALL_DIR" ]; then
+    echo "Begin fetching dein..."
+    git clone https://github.com/Shougo/dein.vim "$INSTALL_DIR"
+    echo "Done."
+    echo ""
   fi
 }

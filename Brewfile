@@ -6,6 +6,8 @@ brew 'git'
 brew 'nvim'
 brew 'docker'
 brew 'rustup'
+brew 'fzf'
+brew 'python3'
 
 cask '1password'
 cask 'firefox'

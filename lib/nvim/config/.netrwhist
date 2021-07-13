@@ -1,3 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/Users/xavier/.config/nvim'
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/xavier/Code/zozo/mcu-starter-projects/samd21/linker'
+let g:netrw_dirhist_7='/Users/xavier/Code/lri/creusot/creusot-contracts-proc'
+let g:netrw_dirhist_6='/Users/xavier/Code/enseignement/io2/TP-drafts'
+let g:netrw_dirhist_5='/Users/xavier/Code/inria/why3'
+let g:netrw_dirhist_4='/Users/xavier/Code/enseignement/io2/Archives/tp-bd'
+let g:netrw_dirhist_3='/Users/xavier/.config/nvim'
+let g:netrw_dirhist_2='/Users/xavier/Code/lri/creusot/tests'
+let g:netrw_dirhist_1='/Users/xavier/Code/inria/these/masters-thesis'
+let g:netrw_dirhist_0='/Users/xavier/.stack/global-project'
+let g:netrw_dirhist_9='/Users/xavier/Code/inria/rust-horn'

@@ -10,3 +10,10 @@ setopt prompt_subst
 export PROMPT="%{$fg[yellow]%}λ(%m)%{$fg[green]%} %c%{$fg[yellow]%} → \${vcs_info_msg_0_}%{$reset_color%}"
 # setopt prompt_subst
 # PROMPT='${vcs_info_msg_0_}%# '
+
+function set-window-title {
+   print -Pn "\e]0;%~\a"
+}
+
+set-window-title
+add-zsh-hook precmd set-window-title

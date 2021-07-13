@@ -18,6 +18,7 @@
 [core]
         excludesfile = ~/.gitignore
         editor = vim
+	pager = less -eFiJM~ -j3 --tabs=3
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -34,3 +35,12 @@
 	default = current
 [url "git://github.com/ghc/packages-"]
 	insteadOf = git://github.com/ghc/packages/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	ff = only
+[log]
+	date = local
