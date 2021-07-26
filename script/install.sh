@@ -75,7 +75,7 @@ function install_plugins()
       if [ $(platform) == 'osx' ] ; then
         ${pkg}_install_osx
       else
-        ${pkg}_plugin_linux
+        ${pkg}_install_linux
       fi
     else
       echo "could not install $pkg"
@@ -90,13 +90,16 @@ function main()
   if [[ $(platform) == 'osx' ]] ; then
     install_core_osx $base_dir
   else
-    install_core_linux $base_dir
+    echo "skipping linux install"
+    # install_core_linux $base_dir
   fi
 
   lib=$(ls lib)
   langs=(haskell ruby)
 
   HOMEBREW_NO_AUTO_UPDATE=1
+
+  echo "Installing plugins..."
 
   install_plugins "$base_dir/lib" ${lib[@]}
   # install_plugins "$base_dir/languages" ${langs[@]}
