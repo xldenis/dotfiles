@@ -88,14 +88,13 @@ function main()
   local base_dir=$(dirname $(get_script_dir))
 
   if [[ $(platform) == 'osx' ]] ; then
-    install_core_osx $base_dir
+    echo "OPS"
   else
     echo "skipping linux install"
     # install_core_linux $base_dir
   fi
 
   lib=$(ls lib)
-  langs=(haskell ruby)
 
   HOMEBREW_NO_AUTO_UPDATE=1
 

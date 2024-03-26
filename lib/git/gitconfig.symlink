@@ -9,7 +9,13 @@
 [alias]
         co = checkout
         count   = !git shortlog -sn
-	amend = commit --amend --no-edit
+	      amend = commit --amend --no-edit
+	      cleanup = !"git branch --merged | grep -vE 'main|master|\\*' | xargs -n 1 git branch -D"
+        wip = commit -m WIP
+        safe-rebase = !git rebase $(git merge-base HEAD @{upstream})
+        safe-diff = !git diff $(git merge-base HEAD @{upstream})
+        clean-branches = !git for-each-ref --shell refs/heads --format='%(refname:short)' | xargs git branch -d
+        recent = for-each-ref --sort=committerdate --format='%(committerdate:short): %(refname:short): %(contents:subject)' refs/heads/
 [color]
         diff = auto
         status = auto
@@ -17,8 +23,8 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
-	pager = less -eFiJM~ -j3 --tabs=3
+        editor = nvim
+      	pager = less -eFiJM~ -j3 --tabs=3
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -33,6 +39,7 @@
         #
         # Setting to git 2.0 default to surpress warning message
 	default = current
+	autoSetupRemote = true
 [url "git://github.com/ghc/packages-"]
 	insteadOf = git://github.com/ghc/packages/
 [filter "lfs"]
@@ -44,3 +51,7 @@
 	ff = only
 [log]
 	date = local
+[diff]
+  external = difft
+[merge]
+	conflictstyle = diff3

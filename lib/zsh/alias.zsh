@@ -17,3 +17,8 @@ kube () {
 }
 
 alias k=kubectl
+
+function auto-merge() {
+    gh pr merge --auto -d -m
+}
+

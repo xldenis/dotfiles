@@ -4,6 +4,7 @@ if &compatible
 endif
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set rtp+=/opt/homebrew/opt/fzf
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
